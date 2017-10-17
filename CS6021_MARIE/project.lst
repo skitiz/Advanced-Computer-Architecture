@@ -1,0 +1,22 @@
+     Assembly listing for: project.mas
+                Assembled: Tue Oct 17 14:24:19 EDT 2017
+
+         |         ORG 0             
+000 1004 |         LOAD INDEX        
+001 6000 |         OUTPUT            
+002 A000 |         CLEAR             
+003 7000 |         HALT              
+         |                          
+004 0000 |  INDEX  HEX 4B454C4C      
+   **** Invalid hexadecimal value: 0 to FFFF allowable.
+
+1 error found.  Assembly unsuccessful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          INDEX  |   004   | 000
+         --------------------------------------------------
+
+
