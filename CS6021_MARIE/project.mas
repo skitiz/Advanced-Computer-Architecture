@@ -1,7 +1,40 @@
-		ORG		0
-		LOAD		INDEX
-		OUTPUT
-		CLEAR
-		HALT
+		ORG		0		/ implemented using "do while" loop
+WHILE, 		LOAD		STR_BASE	/ load str_base into ac
+		ADD		ITR      	/ add index to str_base
+		STORE		INDEX		/ store (str_base + index) into ac
+		CLEAR				/ set ac to zero
+		ADDI		INDEX		/ get the value at ADDR
+		SKIPCOND	400		/ SKIP if ADDR = 0 (or null char)
+		JUMP		DO		/ jump to DO
+		JUMP		END		/ JUMP to END
 
-INDEX, 		HEX		4B454C4C	
+DO,		OUTPUT				/ output value at ADDR
+		LOAD		ITR 		/ load iterator into ac
+		ADD 		ONE 		/ increment iterator by one
+		STORE		ITR 		/ store ac in iterator
+		JUMP		WHILE 		/ jump to while
+
+END,		HALT
+ONE,		DEC		1
+ITR,		DEC		0
+INDEX,		HEX		0
+STR_BASE,	HEX		12		/ memory location of str
+STR,		HEX		4B		/ K
+		HEX		53		/ S
+		HEX		48		/ H
+		HEX		49		/ I
+		HEX		54		/ T
+		HEX		49		/ I
+		HEX		4A		/ J
+		HEX		0A		/ carriage return
+		HEX		42		/ B
+		HEX		41		/ A
+		HEX		4E		/ N
+		HEX		54		/ T
+		HEX		55		/ U
+		HEX		50		/ P
+		HEX		41		/ A
+		HEX		4C		/ L
+		HEX		4C		/ L
+		HEX		49		/ I
+		HEX		0		/ NULL char

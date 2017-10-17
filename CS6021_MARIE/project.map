@@ -1,15 +1,12 @@
- -----------------
- Symbol | Location
- -------+---------
- ARRAY  |   020
- COUNT  |   028
- Cond   |   000
- Disp   |   00F
- End    |   01B
- INDEX  |   01E
- Looop  |   013
- Loop   |   004
- ONE    |   029
- START  |   01F
- Temp   |   00C
+ -------------------
+ Symbol   | Location
+ ---------+---------
+ DO       |   008
+ END      |   00D
+ INDEX    |   010
+ ITR      |   00F
+ ONE      |   00E
+ STR      |   012
+ STR_BASE |   011
+ WHILE    |   000
 

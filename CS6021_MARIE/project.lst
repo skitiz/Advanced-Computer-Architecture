@@ -1,22 +1,61 @@
      Assembly listing for: project.mas
-                Assembled: Tue Oct 17 14:24:19 EDT 2017
+                Assembled: Tue Oct 17 15:20:27 EDT 2017
 
-         |         ORG 0             
-000 1004 |         LOAD INDEX        
-001 6000 |         OUTPUT            
-002 A000 |         CLEAR             
-003 7000 |         HALT              
-         |                          
-004 0000 |  INDEX  HEX 4B454C4C      
-   **** Invalid hexadecimal value: 0 to FFFF allowable.
+         |           ORG 0              / implemented using "do while" loop
+000 1011 |  WHILE    LOAD STR_BASE      / load str_base into ac
+001 300F |           ADD ITR            / add index to str_base
+002 2010 |           STORE INDEX        / store (str_base + index) into ac
+003 A000 |           CLEAR              / set ac to zero
+004 B010 |           ADDI INDEX         / get the value at ADDR
+005 8400 |           SKIPCOND 400       / SKIP if ADDR = 0 (or null char)
+006 9008 |           JUMP DO            / jump to DO
+007 900D |           JUMP END           / JUMP to END
+         |                              
+008 6000 |  DO       OUTPUT             / output value at ADDR
+009 100F |           LOAD ITR           / load iterator into ac
+00A 300E |           ADD ONE            / increment iterator by one
+00B 200F |           STORE ITR          / store ac in iterator
+00C 9000 |           JUMP WHILE         / jump to while
+         |                              
+00D 7000 |  END      HALT                
+00E 0001 |  ONE      DEC 1               
+00F 0000 |  ITR      DEC 0               
+010 0000 |  INDEX    HEX 0               
+011 0012 |  STR_BASE HEX 12             / memory location of str
+012 004B |  STR      HEX 4B             / K
+013 0053 |           HEX 53             / S
+014 0048 |           HEX 48             / H
+015 0049 |           HEX 49             / I
+016 0054 |           HEX 54             / T
+017 0049 |           HEX 49             / I
+018 004A |           HEX 4A             / J
+019 000A |           HEX 0A             / carriage return
+01A 0042 |           HEX 42             / B
+01B 0041 |           HEX 41             / A
+01C 004E |           HEX 4E             / N
+01D 0054 |           HEX 54             / T
+01E 0055 |           HEX 55             / U
+01F 0050 |           HEX 50             / P
+020 0041 |           HEX 41             / A
+021 004C |           HEX 4C             / L
+022 004C |           HEX 4C             / L
+023 0049 |           HEX 49             / I
+024 0000 |           HEX 0              / NULL char
 
-1 error found.  Assembly unsuccessful.
+Assembly successful.
 
          SYMBOL TABLE
-         --------------------------------------------------
-          Symbol | Defined | References 
-         --------+---------+-------------------------------
-          INDEX  |   004   | 000
-         --------------------------------------------------
+         ----------------------------------------------------
+          Symbol   | Defined | References 
+         ----------+---------+-------------------------------
+          DO       |   008   | 006
+          END      |   00D   | 007
+          INDEX    |   010   | 002, 004
+          ITR      |   00F   | 001, 009, 00B
+          ONE      |   00E   | 00A
+          STR      |   012   | 
+          STR_BASE |   011   | 000
+          WHILE    |   000   | 00C
+         ----------------------------------------------------
 
 
